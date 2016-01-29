@@ -1,0 +1,45 @@
+{% extends "site_base.html" %}
+{% block body_base %}
+
+{# .... **Normal content list, maybe a table** .... #}
+{% if patch_list %}
+    <table class="table" id="patches">
+      <th>
+
+          <td>Review Id</td>
+          <td>Submitter</td>
+          <td>Time</td>
+          <td>Status</td>
+          <td>Detail</td>
+      </th>
+        {% for patch in patch_list %}
+            <tr>
+                <td> </td>
+                <td>{{ patch.pid }}</td>
+                <td>{{ patch.submitter }}</td>
+                <td>{{ patch.time }}</td>
+                <td>{{ patch.status }}</td>
+                <td><a href="/patch/{{ patch.id }}/" class="see_detail">Click for Details</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {# .... **Now the pagination section** .... #}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/patches?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/patches?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% else %}
+  <div class="alert alert-info" role="alert">No patches found!!! :(</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "site_base.html" %} {% block body_base %}
+<div class="details">
+
+  <div class="panel panel-info">
+    <div class="panel-heading"> Review Id: </div>
+    <div class="panel-body"> {{ patch.pid }} </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading"> Submitter </div>
+    <div class="panel-body"> {{ patch.submitter }} </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading"> Time </div>
+    <div class="panel-body"> {{ patch.time }} </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading"> Status </div>
+    <div class="panel-body"> {{ patch.status }} </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading"> Info </div>
+    <div class="panel-body"> {{ patch.info }} </div>
+  </div>
+
+</div>
+
+{% endblock %}

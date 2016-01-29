@@ -1,0 +1,64 @@
+{% extends "site_base.html" %} {% load i18n %}
+
+ {% block head_title %}Review Patches Apply{% endblock %}
+
+  {% block body_class %}home{% endblock %}
+
+   {% block body_base %}
+<section class="jumbotron">
+  <div class="container">
+    {% include "_messages.html" %}
+    <h1>{% blocktrans %}Welcome to
+      <br>RBT Patches{% endblocktrans %}</h1>
+    <p>
+      {% blocktrans %} Apply Rb patches on HQ QA Delhivery code. Just Submit your review board patch id. Login is mandatory. {% endblocktrans %}
+    </p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    {% blocktrans %}Please Enter Only Review board Id here{% endblocktrans %}
+    <p class="lead">
+      <form method="post">
+        {% csrf_token %}
+        <input name="rbid" value="{{rbid}}" />
+        <input class="btn btn-success" type="submit" />
+      </form>
+      {% if errors %}
+      <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <pre style="background:transparent">{{errors}}</pre>
+      </div>
+      {% endif %}
+
+      {% if exist_errors %}
+
+      <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <pre style="background:transparent">{{exist_errors}}</pre>
+      </div>
+
+      <form method="post">
+        {% csrf_token %}
+        <input name="rbid" value="{{rbid}}" type="hidden" />
+        <input name="commit_id" value="{{commit_id}}" type="hidden"/>
+        <input class="btn btn-success" type="submit" value="Revert and Apply"/>
+      </form>
+
+      {% endif %}
+      {% if success %}
+          <div class="alert alert-success" role="alert">{{success}}</div>
+      {% endif %}
+    </p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <p class="lead text-center">
+      {% blocktrans %} Check Your Changes here <a href="http://q.delhivery.com/"> QA Server (q.delhivery.com)</a> {% endblocktrans %}
+    </p>
+  </div>
+</section>
+{% endblock %}
