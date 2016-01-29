@@ -10,7 +10,7 @@ DEBUG = True
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "dev.db",
+        "NAME": "dev.db", ## please mention full path for server setup
     }
 }
 
@@ -190,6 +190,8 @@ AUTHENTICATION_BACKENDS = [
     "account.auth_backends.UsernameAuthenticationBackend",
 ]
 
-CODE_PATH = "/home/vikas/Desktop/Work/express"
-REVIEW_PATH = "http://review.delhivery.com/"
+
+## install rbtools on root
+CODE_PATH = "/somefullcodepath/"
+REVIEW_PATH = "Review URL"
 GIT_LOG_COUNT = 20
